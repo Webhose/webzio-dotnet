@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0"
+         DefaultTargets="Build"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">  
+  <PropertyGroup>
+    <NuGetPath Condition=" '$(NuGetPath)'=='' ">Nuget.exe</NuGetPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Solution Include="$(MSBuildThisFileDirectory)*.sln"/>          
+  </ItemGroup>
+
+  <Target Name="RestorePackages">
+    <Message Importance="High" Text="Restoring nuget packages..." />
+    <Exec Command="&quot;$(NuGetPath)&quot; restore &quot;%(Solution.Identity)&quot;" />
+  </Target>
+
+  <Target Name="CreateNuGetPackage">
+    <Message Importance="High" Text="Creating nuget packages..." />
+    <Exec Command="&quot;$(NuGetPath)&quot; pack -Properties Configuration=ReleaseNET461 -IncludeReferencedProjects -Symbols &quot;webhoseio\webhoseio.csproj&quot;" />
+  </Target>
+
+  <Target Name="Clean">
+    <MSBuild Targets="Clean" Projects="@(Solution)" />
+  </Target>
+
+  <Target Name="Build" DependsOnTargets="RestorePackages">
+    <MSBuild Targets="Build" Projects="@(Solution)" Properties="Configuration=ReleaseNET35" />
+    <MSBuild Targets="Build" Projects="@(Solution)" Properties="Configuration=ReleaseNET40" />
+    <MSBuild Targets="Build" Projects="@(Solution)" Properties="Configuration=ReleaseNET45" />
+    <MSBuild Targets="Build" Projects="@(Solution)" Properties="Configuration=ReleaseNET461" />
+    <CallTarget Targets="CreateNuGetPackage" />
+  </Target>
+
+  <Target Name="Rebuild" DependsOnTargets="RestorePackages">
+    <MSBuild Targets="Rebuild" Projects="@(Solution)" Properties="Configuration=ReleaseNET35" />
+    <MSBuild Targets="Rebuild" Projects="@(Solution)" Properties="Configuration=ReleaseNET40" />
+    <MSBuild Targets="Rebuild" Projects="@(Solution)" Properties="Configuration=ReleaseNET45" />
+    <MSBuild Targets="Rebuild" Projects="@(Solution)" Properties="Configuration=ReleaseNET461" />
+    <CallTarget Targets="CreateNuGetPackage" />
+  </Target>
+
+</Project>
