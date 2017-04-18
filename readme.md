@@ -11,7 +11,7 @@ Supported .NET frameworks are .NET 3.5 and higher.
 using webhoseio;
 
 var client = new WebhoseClient(token: YOUR_API_KEY);
-var output = await client.QueryAsync("filterWebData", new Dictionary<string, string> { { "q", "github" } });
+var output = await client.QueryAsync("filterWebContent", new Dictionary<string, string> { { "q", "github" } });
 
 Console.WriteLine(output["posts"][0]["text"]); // Print the text of the first post
 Console.WriteLine(output["posts"][0]["published"]); // Print the text of the first post publication date
@@ -52,14 +52,14 @@ var client = new WebhoseClient(token: YOUR_API_KEY);
 **API Endpoints**
 
 The first parameter the `Query` function accepts is the API endpoint string. Available endpoints:
-* `filterWebData` - access to the news/blogs/forums/reviews API
-* `productSearch` - access to data about eCommerce products/services
-* `darkWebAPI` - access to the dark web (coming soon)
+* `filterWebContent` - access to the news/blogs/forums/reviews API
+* `productFilter` - access to data about eCommerce products/services
+* `darkFilter` - access to the dark web (coming soon)
 
 Now you can make a request and inspect the results:
 
 ```csharp
-var output = await client.QueryAsync("filterWebData", new Dictionary<string, string> { { "q", "github" } });
+var output = await client.QueryAsync("filterWebContent", new Dictionary<string, string> { { "q", "github" } });
 
 Console.WriteLine(output["totalResults"]); 
 // 15565094
@@ -126,16 +126,16 @@ Signature: `Task<WebhoseJsonResponseMessage> WebhoseClient.QueryAsync(string end
 Arguments:
 
   * `endpoint`: 
-    * `filterWebData` - access to the news/blogs/forums/reviews API
-    * `productSearch` - access to data about eCommerce products/services
-    * `darkWebAPI` - access to the dark web (coming soon)
+    * `filterWebContent` - access to the news/blogs/forums/reviews API
+    * `productFilter` - access to data about eCommerce products/services
+    * `darkFilter` - access to the dark web (coming soon)
   * `parameters`: A key value dictionary. The most common key is the "q" parameter that hold the filters Boolean query. [Read about the available filters](https://webhose.io/documentation).
 
 ##### Example
 
 ```csharp
 WebhoseClient client = new WebhoseClient();
-WebhoseJsonResponseMessage response = await client.QueryAsync("filterWebData", new Dictionary<string, string> { { "q", "github" } }));
+WebhoseJsonResponseMessage response = await client.QueryAsync("filterWebContent", new Dictionary<string, string> { { "q", "github" } }));
 ```
 
 #### `Query(endpoint, parameters)`
@@ -148,7 +148,7 @@ Signature: `WebhoseJsonResponseMessage WebhoseClient.Query(string endpoint, IDic
 
 ```csharp
 WebhoseClient client = new WebhoseClient();
-WebhoseJsonResponseMessage response = client.Query("filterWebData", new Dictionary<string, string> { { "q", "github" } }));
+WebhoseJsonResponseMessage response = client.Query("filterWebContent", new Dictionary<string, string> { { "q", "github" } }));
 ```
 
 ### Response
