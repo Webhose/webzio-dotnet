@@ -8,8 +8,8 @@
     <ProjectGuid>{C041AEF5-52A0-4261-953F-0BF21BCCF566}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>webhoseio</RootNamespace>
-    <AssemblyName>webhoseio</AssemblyName>
+    <RootNamespace>webzio</RootNamespace>
+    <AssemblyName>webzio</AssemblyName>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugNET35|AnyCPU'">
@@ -129,15 +129,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="WebhoseClient.cs" />
+    <Compile Include="WebzClient.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebhoseJsonResponseMessage.cs" />
-    <Compile Include="WebhoseOptions.cs" />
+    <Compile Include="WebzJsonResponseMessage.cs" />
+    <Compile Include="WebzOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="webhoseio.nuspec" />
+    <None Include="webzio.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

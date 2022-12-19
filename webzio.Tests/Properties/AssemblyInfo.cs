@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("webhoseio.Tests")]
-[assembly: AssemblyDescription("webhoseio.Tests")]
+[assembly: AssemblyTitle("webzio.Tests")]
+[assembly: AssemblyDescription("webzio.Tests")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("webhoseio.Tests")]
-[assembly: AssemblyCopyright("Copyright © webhoseio 2017")]
+[assembly: AssemblyProduct("webzio.Tests")]
+[assembly: AssemblyCopyright("Copyright © webzio 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

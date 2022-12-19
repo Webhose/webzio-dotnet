@@ -1,4 +1,4 @@
-﻿namespace webhoseio
+﻿namespace webzio
 {
     using System;
     using System.IO;
