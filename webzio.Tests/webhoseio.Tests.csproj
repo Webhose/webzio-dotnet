@@ -8,8 +8,8 @@
     <ProjectGuid>{B75A9F3B-4EFB-4BFC-B285-EAF93C2E41C0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>webhoseio.Tests</RootNamespace>
-    <AssemblyName>webhoseio.Tests</AssemblyName>
+    <RootNamespace>webzio.Tests</RootNamespace>
+    <AssemblyName>webzio.Tests</AssemblyName>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugNET35|AnyCPU'">
@@ -122,13 +122,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WebhoseClientTest.cs" />
+    <Compile Include="WebzClientTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\webhoseio\webhoseio.csproj">
+    <ProjectReference Include="..\webzio\webzio.csproj">
       <Project>{c041aef5-52a0-4261-953f-0bf21bccf566}</Project>
-      <Name>webhoseio</Name>
+      <Name>webzio</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,9 @@
-﻿namespace webhoseio.Tests
+﻿namespace webzio.Tests
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
-    using webhoseio;
+    using webzio;
     using Xunit;
     using Xunit.Abstractions;
 
@@ -12,11 +12,11 @@
     using System.Threading.Tasks;
 #endif
 
-    public class WebhoseClientTest
+    public class WebzClientTest
     {
         private readonly ITestOutputHelper console;
 
-        public WebhoseClientTest(ITestOutputHelper console)
+        public WebzClientTest(ITestOutputHelper console)
         {
             this.console = console;
 #if !NET35 && !NET40
@@ -28,7 +28,7 @@
         [Fact]
         public async Task SimpleTest()
         {
-            var client = new WebhoseClient();
+            var client = new WebzClient();
             var output = await client.QueryAsync("search", new Dictionary<string, string> { { "q", "github" } });
 
             console.WriteLine(output["posts"][0]["text"].ToString());

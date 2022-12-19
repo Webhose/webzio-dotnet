@@ -17,7 +17,7 @@
 
   <Target Name="CreateNuGetPackage">
     <Message Importance="High" Text="Creating nuget packages..." />
-    <Exec Command="&quot;$(NuGetPath)&quot; pack -Properties Configuration=ReleaseNET461 -IncludeReferencedProjects -Symbols &quot;webhoseio\webhoseio.csproj&quot;" />
+    <Exec Command="&quot;$(NuGetPath)&quot; pack -Properties Configuration=ReleaseNET461 -IncludeReferencedProjects -Symbols &quot;webzio\webzio.csproj&quot;" />
   </Target>
 
   <Target Name="Clean">

@@ -1,4 +1,4 @@
-﻿namespace webhoseio
+﻿namespace webzio
 {
     using System;
     using System.Collections.Generic;
@@ -9,40 +9,40 @@
     using System.Threading.Tasks;
 #endif
 
-    public class WebhoseClient
+    public class WebzClient
     {
-        private readonly WebhoseOptions options;
+        private readonly WebzOptions options;
 
-        public WebhoseClient(string token)
+        public WebzClient(string token)
         {
-            this.options = new WebhoseOptions {Token = token};
+            this.options = new WebzOptions {Token = token};
         }
 
-        public WebhoseClient(WebhoseOptions options = null)
+        public WebzClient(WebzOptions options = null)
         {
-            this.options = options ?? new WebhoseOptions();
+            this.options = options ?? new WebzOptions();
         }
 
-        public WebhoseJsonResponseMessage Query(
+        public WebzJsonResponseMessage Query(
             string endpoint,
             IDictionary<string, string> parameters)
         {
             var response = Helpers.GetResponseString(GetQueryUri(options, endpoint, parameters));
-            return new WebhoseJsonResponseMessage(response);
+            return new WebzJsonResponseMessage(response);
         }
 
 #if !NET35 && !NET40
-        public async Task<WebhoseJsonResponseMessage> QueryAsync(
+        public async Task<WebzJsonResponseMessage> QueryAsync(
             string endpoint, 
             IDictionary<string, string> parameters)
         {
             var response = await Helpers.GetResponseStringAsync(GetQueryUri(options, endpoint, parameters));
-            return new WebhoseJsonResponseMessage(response);
+            return new WebzJsonResponseMessage(response);
         }
 #endif
 
         protected static Uri GetQueryUri(
-            WebhoseOptions options,
+            WebzOptions options,
             string endpoint,
             IDictionary<string, string> parameters)
         {
