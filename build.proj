@@ -17,7 +17,7 @@
 
   <Target Name="CreateNuGetPackage">
     <Message Importance="High" Text="Creating nuget packages..." />
-    <Exec Command="&quot;$(NuGetPath)&quot; pack -Properties Configuration=ReleaseNET461 -IncludeReferencedProjects -Symbols &quot;webzio\webzio.csproj&quot;" />
+    <Exec Command="&quot;$(NuGetPath)&quot; pack -Properties Configuration=ReleaseNET7 -IncludeReferencedProjects -Symbols &quot;webzio\webzio.csproj&quot;" />
   </Target>
 
   <Target Name="Clean">
@@ -25,18 +25,12 @@
   </Target>
 
   <Target Name="Build" DependsOnTargets="RestorePackages">
-    <MSBuild Targets="Build" Projects="@(Solution)" Properties="Configuration=ReleaseNET35" />
-    <MSBuild Targets="Build" Projects="@(Solution)" Properties="Configuration=ReleaseNET40" />
-    <MSBuild Targets="Build" Projects="@(Solution)" Properties="Configuration=ReleaseNET45" />
-    <MSBuild Targets="Build" Projects="@(Solution)" Properties="Configuration=ReleaseNET461" />
+    <MSBuild Targets="Build" Projects="@(Solution)" Properties="Configuration=ReleaseNET7" />
     <CallTarget Targets="CreateNuGetPackage" />
   </Target>
 
   <Target Name="Rebuild" DependsOnTargets="RestorePackages">
-    <MSBuild Targets="Rebuild" Projects="@(Solution)" Properties="Configuration=ReleaseNET35" />
-    <MSBuild Targets="Rebuild" Projects="@(Solution)" Properties="Configuration=ReleaseNET40" />
-    <MSBuild Targets="Rebuild" Projects="@(Solution)" Properties="Configuration=ReleaseNET45" />
-    <MSBuild Targets="Rebuild" Projects="@(Solution)" Properties="Configuration=ReleaseNET461" />
+    <MSBuild Targets="Rebuild" Projects="@(Solution)" Properties="Configuration=ReleaseNET7" />
     <CallTarget Targets="CreateNuGetPackage" />
   </Target>
 

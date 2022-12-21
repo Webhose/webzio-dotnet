@@ -11,14 +11,11 @@
     <copyright>Copyright 2017</copyright>
     <dependencies>
       <group>
-        <dependency id="Newtonsoft.Json" version="9.0.1" />
+        <dependency id="Newtonsoft.Json" version="13.0.2" />
       </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\ReleaseNET35\$id$.dll" target="lib\net35\" />
-    <file src="bin\ReleaseNET40\$id$.dll" target="lib\net40\" />
-    <file src="bin\ReleaseNET45\$id$.dll" target="lib\net45\" />
-    <file src="bin\ReleaseNET461\$id$.dll" target="lib\net461\" />
+    <file src="bin\ReleaseNET7\$id$.dll" target="lib\net7\" />
   </files>
 </package>

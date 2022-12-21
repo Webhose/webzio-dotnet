@@ -1,41 +1,26 @@
-namespace webzio
+using Newtonsoft.Json.Linq;
+
+namespace webzio;
+
+public class WebzJsonResponseMessage
 {
-    using System;
-    using Newtonsoft.Json.Linq;
+    public JObject Json { get; }
 
-#if !NET35 && !NET40
-    using System.Threading;
-    using System.Threading.Tasks;
-#endif
+    public JToken this[string key] => Json[key];
 
-    public class WebzJsonResponseMessage
+    internal WebzJsonResponseMessage(string content)
     {
-        public JObject Json { get; }
+        Json = JObject.Parse(content);
+    }
 
-        public JToken this[string key] => Json[key];
+    public async Task<WebzJsonResponseMessage> GetNextAsync()
+    {
+        var response = await Helpers.GetResponseStringAsync(GetNextUri(Json));
+        return new WebzJsonResponseMessage(response);
+    }
 
-        internal WebzJsonResponseMessage(string content)
-        {
-            Json = JObject.Parse(content);
-        }
-
-        public WebzJsonResponseMessage GetNext()
-        {
-            var response = Helpers.GetResponseString(GetNextUri(Json));
-            return new WebzJsonResponseMessage(response);
-        }
-
-#if !NET35 && !NET40
-        public async Task<WebzJsonResponseMessage> GetNextAsync()
-        {
-            var response = await Helpers.GetResponseStringAsync(GetNextUri(Json));
-            return new WebzJsonResponseMessage(response);
-        }
-#endif
-
-        protected static Uri GetNextUri(JObject json)
-        {
-            return new Uri(Constants.BaseUri + json["next"].Value<string>());
-        }
+    protected static Uri GetNextUri(JObject json)
+    {
+        return new Uri(Constants.BaseUri + json["next"].Value<string>());
     }
 }
