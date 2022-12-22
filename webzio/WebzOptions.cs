@@ -1,10 +1,8 @@
-namespace webzio
-{
-    using System.Configuration;
+namespace webzio;
 
-    public class WebzOptions
-    {
-        public string Token { get; set; } = ConfigurationManager.AppSettings["webzio:token"];
-        public string Format => "json";
-    }
+public class WebzOptions
+{
+    public string Token { get; set; }
+
+    public string Format => "json";
 }

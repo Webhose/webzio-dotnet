@@ -1,45 +1,35 @@
-﻿namespace webzio.Tests
+﻿using System.Net;
+using Xunit;
+using Xunit.Abstractions;
+
+namespace webzio.Tests;
+
+public class WebzClientTest
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net;
-    using webzio;
-    using Xunit;
-    using Xunit.Abstractions;
+    private readonly ITestOutputHelper _console;
 
-#if !NET35 && !NET40
-    using System.Threading;
-    using System.Threading.Tasks;
-#endif
-
-    public class WebzClientTest
+    public WebzClientTest(ITestOutputHelper console)
     {
-        private readonly ITestOutputHelper console;
+        _console = console ?? throw new ArgumentNullException(nameof(console));
 
-        public WebzClientTest(ITestOutputHelper console)
-        {
-            this.console = console;
-#if !NET35 && !NET40
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-#endif
-        }
+        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+    }
 
-#if !NET35 && !NET40
-        [Fact]
-        public async Task SimpleTest()
-        {
-            var client = new WebzClient();
-            var output = await client.QueryAsync("search", new Dictionary<string, string> { { "q", "github" } });
+    [Fact]
+    public async Task SimpleTest()
+    {
+        string token = "3ff39d5a-5c2d-41ee-b785-36b0cc520170";
 
-            console.WriteLine(output["posts"][0]["text"].ToString());
-            console.WriteLine(output["posts"][0]["published"].ToString());
+        var client = new WebzClient(token);
+        var output = await client.QueryAsync("search", new Dictionary<string, string> { { "q", "github" } });
 
-            console.WriteLine(output["posts"].Count().ToString());
-            console.WriteLine(output["posts"][0]["language"].Count().ToString());
+        _console.WriteLine(output["posts"][0]["text"].ToString());
+        _console.WriteLine(output["posts"][0]["published"].ToString());
 
-            output = await output.GetNextAsync();
-            console.WriteLine(output["posts"][0]["thread"]["site"].ToString());
-        }
-#endif
+        _console.WriteLine(output["posts"].Count().ToString());
+        _console.WriteLine(output["posts"][0]["language"].Count().ToString());
+
+        output = await output.GetNextAsync();
+        _console.WriteLine(output["posts"][0]["thread"]["site"].ToString());
     }
 }
