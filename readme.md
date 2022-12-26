@@ -4,6 +4,7 @@ webz.io client for .NET
 [![webzio MyGet Build Status](https://www.myget.org/BuildSource/Badge/webzio?identifier=183db351-e812-4cf6-9be6-b5c3977977b3)](https://www.myget.org/)
 
 A simple way to access the [Webz.io](https://webz.io) API from your .NET code.
+
 Supported .NET 7.0
 
 
