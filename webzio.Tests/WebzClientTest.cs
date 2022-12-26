@@ -18,7 +18,7 @@ public class WebzClientTest
     [Fact]
     public async Task SimpleTest()
     {
-        string token = "3ff39d5a-5c2d-41ee-b785-36b0cc520170";
+        string token = "YOUR_API_KEY";
 
         var client = new WebzClient(token);
         var output = await client.QueryAsync("search", new Dictionary<string, string> { { "q", "github" } });
