@@ -1,41 +1,50 @@
-﻿namespace webzio;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-public class WebzClient
+namespace webzio
 {
-    private readonly WebzOptions _options;
-
-    public WebzClient(string token)
+    public class WebzClient
     {
-        _options = new WebzOptions
-        {
-            Token = token
-        };
-    }
+        private readonly WebzOptions _options;
 
-    public async Task<WebzJsonResponseMessage> QueryAsync(string endpoint, IDictionary<string, string> parameters)
-    {
-        var response = await Helpers.GetResponseStringAsync(GetQueryUri(_options, endpoint, parameters));
-        return new WebzJsonResponseMessage(response);
-    }
-
-    protected static Uri GetQueryUri(WebzOptions options, string endpoint, IDictionary<string, string> parameters)
-    {
-        if (parameters == null)
+        public WebzClient(string token)
         {
-            parameters = new Dictionary<string, string>();
-        }
-        if (!parameters.ContainsKey("token"))
-        {
-            parameters.Add("token", options.Token);
-        }
-        if (!parameters.ContainsKey("format"))
-        {
-            parameters.Add("format", options.Format);
+            _options = new WebzOptions
+            {
+                Token = token
+            };
         }
 
-        var query = string.Join("&", parameters.Select(kv => $"{kv.Key}={Uri.EscapeDataString(kv.Value)}").ToArray());
-        query = string.IsNullOrEmpty(query) ? query : "?" + query;
+        public async Task<WebzJsonResponseMessage> QueryAsync(string endpoint, IDictionary<string, string> parameters)
+        {
+            var response = await Helpers.GetResponseStringAsync(GetQueryUri(_options, endpoint, parameters));
+            return new WebzJsonResponseMessage(response);
+        }
 
-        return new Uri(Constants.BaseUri + endpoint + query);
+        protected static Uri GetQueryUri(WebzOptions options, string endpoint, IDictionary<string, string> parameters)
+        {
+            if (parameters == null)
+            {
+                parameters = new Dictionary<string, string>();
+            }
+
+            if (!parameters.ContainsKey("token"))
+            {
+                parameters.Add("token", options.Token);
+            }
+
+            if (!parameters.ContainsKey("format"))
+            {
+                parameters.Add("format", options.Format);
+            }
+
+            var query = string.Join("&",
+                parameters.Select(kv => $"{kv.Key}={Uri.EscapeDataString(kv.Value)}").ToArray());
+            query = string.IsNullOrEmpty(query) ? query : "?" + query;
+
+            return new Uri(Constants.BaseUri + endpoint + query);
+        }
     }
 }

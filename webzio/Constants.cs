@@ -1,6 +1,7 @@
-namespace webzio;
-
-static class Constants
+namespace webzio
 {
-    public const string BaseUri = "https://api.webz.io/";
+    static class Constants
+    {
+        public const string BaseUri = "https://api.webz.io/";
+    }
 }

@@ -1,8 +1,9 @@
-namespace webzio;
-
-public class WebzOptions
+namespace webzio
 {
-    public string Token { get; set; }
+    public class WebzOptions
+    {
+        public string Token { get; set; }
 
-    public string Format => "json";
+        public string Format => "json";
+    }
 }
